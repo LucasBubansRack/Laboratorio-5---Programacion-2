@@ -1,7 +1,7 @@
 package org.example;
 
-import sun.tools.jconsole.AboutDialog;
-
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Pedido {
@@ -9,13 +9,25 @@ public class Pedido {
     private int idPedido;
     private Date fecha;
     private double total;
-    private  EstadoPedido estado;
+    private EstadoPedido estado;
+    // un mismo pedido puede tener varios detalles por lo que necesito una lista de detalles para cada pedido
+    private List<DetallePedido> detalles;
 
     public Pedido(int idPedido, Date fecha, double total, EstadoPedido estado) {
         this.idPedido = idPedido;
         this.fecha = fecha;
         this.total = total;
         this.estado = estado;
+        this.detalles = new ArrayList<>();
+    }
+
+    public Pedido() {
+        estado = EstadoPedido.EN_PREPARACION;
+        detalles = new ArrayList<>();
+    }
+
+    public void cambiarEstado(EstadoPedido nuevoEstado) {
+        estado = nuevoEstado;
     }
 
     public int getIdPedido() {
@@ -50,29 +62,37 @@ public class Pedido {
         this.estado = estado;
     }
 
-    public void agregarDetalle(DetallePedido detalle){
+    public List<DetallePedido> getDetalles() {
+        return detalles;
+    }
 
+    public void agregarDetalle(DetallePedido detalle){
+        detalles.add(detalle);
+        calcularTotal();
     }
 
     public double calcularTotal(){
-        return tot;
+        double suma = 0;
+
+        for(DetallePedido d : detalles){
+            suma += d.getSubtotal();
+        }
+        total = suma;
+
+        return total;
     }
 
     public void confirmarPedido(){
-
+        estado = EstadoPedido.EN_ENVIO;
     }
 
     public Pago generarPago(){
-        return pag;
-    }
-
-    public void cambiarEstado(){
-
+        return new Pago(1, total, new Date());
     }
 
     @Override
     public String toString() {
-        return super.toString() "Pedido{" +
+        return "Pedido{" +
                 "idPedido=" + idPedido +
                 ", fecha=" + fecha +
                 ", total=" + total +

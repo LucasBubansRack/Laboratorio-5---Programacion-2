@@ -1,5 +1,7 @@
 package org.example;
 
-public class EstadoPedido {
-
+public enum EstadoPedido {
+    EN_PREPARACION,
+    EN_ENVIO,
+    ENTREGADO
 }

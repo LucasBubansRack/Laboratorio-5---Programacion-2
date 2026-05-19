@@ -4,14 +4,16 @@ public class DetallePedido {
 
     private int cantidad;
     private double subtotal;
+    private Producto producto;
 
     public DetallePedido() {
 
     }
 
-    public DetallePedido(int cantidad, double subtotal) {
+    public DetallePedido(int cantidad, Producto producto) {
         this.cantidad = cantidad;
-        this.subtotal = subtotal;
+        this.producto = producto;
+        this.subtotal = calcularSubtotal();
     }
 
     public int getCantidad() {
@@ -26,13 +28,16 @@ public class DetallePedido {
         return subtotal;
     }
 
-    public void setSubtotal(double subtotal) {
-        this.subtotal = subtotal;
+    public Producto getProducto() {
+        return producto;
     }
 
-    public double calcularSubtotal(Producto producto){
-        return sub;
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
 
-
+    public double calcularSubtotal() {
+        subtotal = cantidad * producto.getPrecio();
+        return subtotal;
+    }
 }
