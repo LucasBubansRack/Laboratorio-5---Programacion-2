@@ -22,20 +22,13 @@ public class ClientePreferencial extends Cliente{
         return puntosAcumulados;
     }
 
-    public void getCanjearBeneficios() {
-        return canjearBeneficios;
-    }
-
-    public void setCanjearBeneficios(void canjearBeneficios) {
-        this.canjearBeneficios = canjearBeneficios;
-    }
-
     public void setPuntosAcumulados(int puntosAcumulados) {
         this.puntosAcumulados = puntosAcumulados;
     }
 
     public double aplicarDescuento(){
-        return double des;
+        double des = porcentajeDescuento / 100;
+        return des;
     }
     public void acumularPuntos(){
 

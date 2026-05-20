@@ -67,8 +67,13 @@ public class Pedido {
     }
 
     public void agregarDetalle(DetallePedido detalle){
-        detalles.add(detalle);
-        calcularTotal();
+        if(detalle.getProducto().verificarStock(detalle.getCantidad())){
+            detalles.add(detalle);
+            detalle.getProducto().actualizarStock(-detalle.getCantidad());
+            calcularTotal();
+        } else {
+            System.out.println("Stock insuficiente");
+        }
     }
 
     public double calcularTotal(){
@@ -80,6 +85,12 @@ public class Pedido {
         total = suma;
 
         return total;
+    }
+
+    public void mostrarDetalles(){
+        for(DetallePedido d : detalles){
+            System.out.println(d);
+        }
     }
 
     public void confirmarPedido(){

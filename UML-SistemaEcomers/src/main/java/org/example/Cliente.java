@@ -80,7 +80,7 @@ public class Cliente {
     }
 
     public Pedido realizarPedido(){
-        return ped;
+        return new Pedido();
     }
 
     public void verHistorialPedido(){

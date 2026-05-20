@@ -53,4 +53,5 @@ public class Pago {
     public void emitirComprobante() {
         System.out.println("Comprobante emitido");
     }
+
 }

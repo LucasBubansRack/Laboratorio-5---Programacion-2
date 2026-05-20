@@ -81,4 +81,14 @@ public class Producto {
         return precio - valorCosto;
     }
 
+    @Override
+    public String toString() {
+        return "Producto{" +
+                "idProducto=" + idProducto +
+                ", nombre='" + nombre + '\'' +
+                ", precio=" + precio +
+                ", stock=" + Stock +
+                '}';
+    }
+
 }

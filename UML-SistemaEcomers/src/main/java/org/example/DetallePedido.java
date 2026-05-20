@@ -40,4 +40,13 @@ public class DetallePedido {
         subtotal = cantidad * producto.getPrecio();
         return subtotal;
     }
+
+    @Override
+    public String toString() {
+        return "DetallePedido{" +
+                "cantidad=" + cantidad +
+                ", subtotal=" + subtotal +
+                ", producto=" + producto.getNombre() +
+                '}';
+    }
 }
